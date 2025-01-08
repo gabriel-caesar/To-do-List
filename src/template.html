@@ -6,24 +6,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DoingTime</title>
 </head>
-<body>
+<body style="display: flex">
+
   <div class="left-panel">
+    <div class="main-container">
+      <div class="today-upcoming-container" id="tuc">
+        <div class="list" id="today">
+          <div class="text" id="today-container">
+            <i class="fa-solid fa-calendar-check" style="color: #166AC5"></i>
+            <h3>Today</h3>
+          </div>
+          <span id="today-count">0</span>
+        </div>
+        <div class="list" id="upcoming">
+          <div class="text" id="upcoming-container">
+            <i class="fa-solid fa-calendar-days" style="color: #d95050"></i>
+            <h3>Upcoming</h3>
+          </div>
+          <span id="upcoming-count">0</span>
+        </div>
+      </div>
+
+      <div class="lists-container" id="lc">
+        
+        
+      </div>
+      
+    </div>
     <nav class="btn-bar">
       <button class="buttons" id="add-list-btn"><i class="fa-solid fa-plus"></i> New List</button>
       <button class="buttons" id="filter-btn"><i class="fa-solid fa-filter"></i></button>
     </nav>
-    <div class="new-list-container">
+    <form class="new-list-container">
       <div class="wrapper">
         <input type="text" class="inputs" id="list-name" placeholder="List name..." required>
-        <button class="buttons" id="close-list-btn"><i class="fa-solid fa-xmark"></i></button>
+        <button class="buttons" id="close-list-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <ul class="requirements">
         
       </ul>
-    </div>
+    </form>
   </div>
+
   <div class="right-panel">
     
   </div>
+
 </body>
 </html>
