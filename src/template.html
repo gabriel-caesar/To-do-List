@@ -9,6 +9,8 @@
 <body style="display: flex">
 
   <div class="left-panel">
+
+    <!-- @@@@@ uper navigation panel @@@@@ -->
     <div class="main-container">
       <div class="today-upcoming-container" id="tuc">
         <div class="list" id="today">
@@ -28,14 +30,15 @@
       </div>
 
       <div class="lists-container" id="lc">
-        
-        
+        <!-- @@@@@ filled with javascript @@@@@ -->
       </div>
       
     </div>
+
+    <!-- @@@@@ bottom navigation bar @@@@@ -->
     <nav class="btn-bar">
-      <button class="buttons" id="add-list-btn"><i class="fa-solid fa-plus"></i> New List</button>
-      <button class="buttons" id="filter-btn"><i class="fa-solid fa-filter"></i></button>
+      <button class="buttons bold light-gray space-around" id="add-list-btn"><i class="fa-solid fa-plus"></i> New List</button>
+      <button class="buttons bold light-gray space-around" id="filter-btn"><i class="fa-solid fa-filter"></i></button>
     </nav>
     <form class="new-list-container">
       <div class="wrapper">
@@ -46,10 +49,27 @@
         
       </ul>
     </form>
+
   </div>
 
   <div class="right-panel">
-    
+    <!-- @@@@@ main navigation panel @@@@@ -->
+     <div class="nav-panel" id="nav-panel">
+
+     </div>
+
+    <!-- @@@@@ bottom navigation bar @@@@@ -->
+    <nav class="btn-bar space-around bgColor-white">
+      <button class="buttons light-gray" id="add-task-btn">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <button class="buttons bold light-gray" id="learn-more-btn">
+        Learn more
+      </button>
+      <button class="buttons light-gray" id="search-task-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </nav>
   </div>
 
 </body>

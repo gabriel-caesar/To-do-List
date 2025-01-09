@@ -10,16 +10,22 @@ function mainLogic () {
       listName: `${listName}`,
       action: () => console.log(listName),
     });
-    console.log(lists);
+    // console.log(lists);
   };
 
-  return { addNewList, lists };
+  function selectList (name) {
+    const targetObj = lists.find(obj => obj.listName === name);
+    return targetObj;
+  };
+
+  return { addNewList, lists, selectList };
 };
 
 // regex for user entry
 const regex = /^(?!.*(\s{2,}|\-{2,}|\:{2,}|'{2,}))[A-Z][A-Za-z\s\-\:\']+[a-z]$/;
 
 // getting the mainLogic to chain functions and initializing it
+// exporting it so its closures can be used outside this file
 const logic = mainLogic();
 
 // initializing the array from mainLogic
@@ -45,4 +51,4 @@ const createList = () => {
 };
 
 // exporting functions and variables for other dependent files
-export { mainLogic, createList, listsArray };
+export { createList, listsArray, logic};

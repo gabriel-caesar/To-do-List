@@ -1,5 +1,5 @@
 import "./styles.css";
-import { createList, listsArray } from "./logic.js";
+import { createList } from "./logic.js";
 import { renderList, closeListTab, renderListTab } from "./dom-functions.js";
 
 // calling the DOM
