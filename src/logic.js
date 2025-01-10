@@ -8,9 +8,7 @@ function mainLogic () {
   function addNewList (listName) {
     lists.push({
       listName: `${listName}`,
-      action: () => console.log(listName),
     });
-    // console.log(lists);
   };
 
   function selectList (name) {

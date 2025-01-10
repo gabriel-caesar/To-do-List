@@ -1,13 +1,12 @@
 import { newListContainer, 
   listName, 
   requirements, 
-  listContainer 
+  listContainer,
+  newTaskContainer,
+  taskName,
+  dueDate 
 } from "./index.js";
 import { listsArray, logic } from "./logic.js";
-
-// calling the DOM that doesn't need exporting
-// in other words, it just need this file to be manipulated
-const rightPanel = document.querySelector(".right-panel");
 
 // closes the naming list tab (user input)
 const closeListTab = () => {
@@ -28,11 +27,62 @@ const renderListTab = () => {
   listName.select();
 };
 
+const renderTaskTab = () => {
+  newTaskContainer.style.maxHeight = "61px";
+  newTaskContainer.style.zIndex = "0";
+  newTaskContainer.style.bottom = "6%";
+  // selects the input automatically
+  taskName.select();
+};
+
+const closeTaskTab = () => {
+  newTaskContainer.style.maxHeight = "0px";
+  newTaskContainer.style.zIndex = "-1";
+  taskName.innerHTML = "";
+  dueDate.innerHTML = "";
+};
+
 // handles the rendering of the right panel where
 // tasks are shown related to its parent's list
 const renderRightPanel = name => {
+
+  // from here I'm creating the rendering for each list
+  // when the user selects one list from the left panel,
+  // this function translates the list info to the right panel
+  const rightPanel = document.querySelector(".nav-panel");
+
+  rightPanel.innerHTML = "";
   
-  // rightPanel.innerHTML
+  const headerWrapper = document.createElement("div");
+  headerWrapper.className = "header-wrapper";
+  rightPanel.appendChild(headerWrapper);
+
+  const textBtnWrap = document.createElement("div");
+  textBtnWrap.className = "text-btn-wrap";
+  headerWrapper.appendChild(textBtnWrap);
+
+  // here is one important point, because i use the the function
+  // parameter to access the actual name of the list being clicked
+  const renderedListName = document.createElement("h1");
+  renderedListName.className = "semi-bold";
+  renderedListName.innerHTML = `
+  <i class="fa-solid fa-cube" style="color: #166AC5"></i> ${name}
+  `
+  textBtnWrap.appendChild(renderedListName);
+
+  const deleteListBtn = document.createElement("button");
+  deleteListBtn.className = "buttons";
+  deleteListBtn.id = "delete-list-icon";
+  deleteListBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+  textBtnWrap.appendChild(deleteListBtn);
+
+  const textareaWrapper = document.createElement("div");
+  textareaWrapper.className = "textarea-wrapper";
+  textareaWrapper.innerHTML = `
+  <textarea class="inputs" name="list-desc" id="list-desc" placeholder="Add your list a description..."></textarea>
+  `
+  headerWrapper.appendChild(textareaWrapper);
+
   console.log(logic.selectList(name), listsArray);
 };
 
@@ -78,7 +128,11 @@ const renderList = () => {
   });
 };
 
-
-
 // exporting functions for other dependent files
-export { renderList, closeListTab, renderListTab };
+export { 
+  renderList, 
+  closeListTab, 
+  renderListTab,
+  closeTaskTab,
+  renderTaskTab
+ };

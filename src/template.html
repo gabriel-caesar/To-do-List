@@ -55,10 +55,56 @@
   <div class="right-panel">
     <!-- @@@@@ main navigation panel @@@@@ -->
      <div class="nav-panel" id="nav-panel">
+        <div class="header-wrapper">
+          <div class="text-btn-wrap">
+            <h1 class="semi-bold"><i class="fa-solid fa-cube" style="color: #166AC5"></i> Carol Gostosa</h1>
+            <button class="buttons" id="delete-list-icon">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+          <div class="textarea-wrapper">
+            <textarea class="inputs" name="list-desc" id="list-desc" placeholder="Add your list a description..."></textarea>
+          </div>
+        </div>
 
+        <div class="task-container">
+
+          <div class="task-wrapper" id="task-wrapper">
+
+            <div class="checkbox-task-wrapper">
+              <div class="wrapping flex width" id="wrap-one">
+                <input type="checkbox" id="somecheckbox">
+                <span id="date-due" class="date-marks">Dec 22</span>
+              </div>
+            </div>
+
+            <div class="wrapping flex" id="wrap-two">
+              <h3 class="semi-bold" style="margin-top: 3px">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </h1>
+              <button class="buttons" id="delete-task-icon">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+      
+          </div>
+
+        </div>
      </div>
 
     <!-- @@@@@ bottom navigation bar @@@@@ -->
+    <form class="new-task-container">
+      <div class="flex space-between align-center">
+        <div class="input-wrapper">
+          <input class="inputs margin-right" type="text" id="task-name" placeholder="Task name... ">
+          <input class="inputs" type="text" id="due-date" placeholder="mm/dd/yyyy... ">
+        </div>
+        <div class="btn-wrapper">
+          <button class="buttons" id="close-task-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+    </form>
+
     <nav class="btn-bar space-around bgColor-white">
       <button class="buttons light-gray" id="add-task-btn">
         <i class="fa-solid fa-plus"></i>
