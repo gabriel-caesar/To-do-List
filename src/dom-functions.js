@@ -4,7 +4,9 @@ import { newListContainer,
   listContainer,
   newTaskContainer,
   taskName,
-  dueDate 
+  dueDate,
+  listPointer,
+  taskRequirements
 } from "./index.js";
 import { listsArray, logic } from "./logic.js";
 
@@ -13,7 +15,6 @@ const closeListTab = () => {
   newListContainer.style.maxHeight = "0";
   newListContainer.style.zIndex = "-1";
   listName.value = "";
-  requirements.innerHTML = "";
   requirements.style.display = "none";
   listName.classList.remove("invalid");
 };
@@ -28,7 +29,7 @@ const renderListTab = () => {
 };
 
 const renderTaskTab = () => {
-  newTaskContainer.style.maxHeight = "61px";
+  newTaskContainer.style.maxHeight = "180px";
   newTaskContainer.style.zIndex = "0";
   newTaskContainer.style.bottom = "6%";
   // selects the input automatically
@@ -38,8 +39,11 @@ const renderTaskTab = () => {
 const closeTaskTab = () => {
   newTaskContainer.style.maxHeight = "0px";
   newTaskContainer.style.zIndex = "-1";
-  taskName.innerHTML = "";
-  dueDate.innerHTML = "";
+  taskName.value = "";
+  dueDate.value = "";
+  taskRequirements.style.display = "none";
+  taskName.classList.remove("invalid");
+  dueDate.classList.remove("invalid-date");
 };
 
 // function that capitalize the first letter of an text input
@@ -64,6 +68,7 @@ const renderRightPanel = name => {
   // this function translates the list info to the right panel
   const rightPanel = document.querySelector(".nav-panel");
 
+  // clears the container to avoid duplication
   rightPanel.innerHTML = "";
   
   const headerWrapper = document.createElement("div");
@@ -74,7 +79,7 @@ const renderRightPanel = name => {
   textBtnWrap.className = "text-btn-wrap";
   headerWrapper.appendChild(textBtnWrap);
 
-  // here is one important point, because i use the the function
+  // here is one important point, because i use the the function renderRightPanel(namew)
   // parameter to access the actual name of the list being clicked
   const renderedListName = document.createElement("h1");
   renderedListName.className = "semi-bold";
@@ -83,6 +88,12 @@ const renderRightPanel = name => {
   `
   textBtnWrap.appendChild(renderedListName);
 
+  // will render the name of the list selected
+  // so the logic can send the task created to
+  // "lists" array accordinly
+  listPointer.value = name;
+
+  // delete list button (trash can)
   const deleteListBtn = document.createElement("button");
   deleteListBtn.className = "buttons";
   deleteListBtn.id = "delete-list-icon";
@@ -114,7 +125,7 @@ const renderRightPanel = name => {
 
       // regex for the desc input, checks if there is
       // one or more than one space in the user entry
-      const regex = /^\s*/gm;
+      const regex = /^\s*/gm; // not working right now
 
       if (listDesc.value !== "") {
         
@@ -125,6 +136,7 @@ const renderRightPanel = name => {
         // hides the textarea
         listDesc.style.display = "none";
 
+        // injecting html code
         wrap2.innerHTML = `
           <p class="description">${descReformater(listDesc)}</p>
           <div class="edit-btn-wrap">
@@ -146,12 +158,11 @@ const renderRightPanel = name => {
           wrap2.style.display = "none";
         });
       } else {
+        // error animation
         listDesc.classList.toggle("invalid");
       }
     }
   });
-
-  console.log(logic.selectList(name), listsArray);
 };
 
 // handles the rendering of a new list
@@ -202,5 +213,5 @@ export {
   closeListTab, 
   renderListTab,
   closeTaskTab,
-  renderTaskTab
+  renderTaskTab,
  };

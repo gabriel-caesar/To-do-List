@@ -1,12 +1,14 @@
 import "./styles.css";
-import { createList } from "./logic.js";
+import { createList, createTask } from "./logic.js";
 import { 
   renderList, 
   closeListTab, 
   renderListTab,
   closeTaskTab,
-  renderTaskTab
+  renderTaskTab,
  } from "./dom-functions.js";
+
+console.log(new Date());
 
 // calling the DOM for the creation of lists
 const newListContainer = document.querySelector(".new-list-container");
@@ -18,6 +20,8 @@ const listContainer = document.getElementById("lc");
 const newTaskContainer = document.querySelector(".new-task-container");
 const taskName = document.getElementById("task-name");
 const dueDate = document.getElementById("due-date");
+const listPointer = document.getElementById("list-pointer");
+const taskRequirements = document.querySelector(".task-requirements");
 
 // "+" TASK button
 const createTaskBtn = document.getElementById("add-task-btn");
@@ -34,6 +38,24 @@ listName.addEventListener('keydown', e => {
     e.preventDefault();
     createList();
     renderList();
+  }
+});
+
+// creates a new task for the selected list when
+// task name input is submitted
+taskName.addEventListener('keydown', e => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    createTask();
+  }
+});
+
+// creates a new task for the selected list when
+// due date input is submitted
+dueDate.addEventListener('keydown', e => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    createTask();
   }
 });
 
@@ -79,5 +101,7 @@ export { newListContainer,
   listContainer,
   newTaskContainer,
   taskName,
-  dueDate
+  dueDate,
+  listPointer,
+  taskRequirements,
   };

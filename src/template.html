@@ -96,13 +96,17 @@
     <form class="new-task-container">
       <div class="flex space-between align-center">
         <div class="input-wrapper">
-          <input class="inputs margin-right" type="text" id="task-name" placeholder="Task name... ">
-          <input class="inputs" type="text" id="due-date" placeholder="mm/dd/yyyy... ">
+          <input class="inputs" type="text" id="task-name" placeholder="Task name... ">
+          <input class="inputs margin-inline" type="text" id="due-date" placeholder="mm/dd/yyyy... ">
+          <input class="inputs" id="list-pointer" type="text" placeholder="Selected list..." disabled>
         </div>
         <div class="btn-wrapper">
           <button class="buttons" id="close-task-btn" type="button"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
+      <ul class="task-requirements">
+        
+      </ul>
     </form>
 
     <nav class="btn-bar space-around bgColor-white">
