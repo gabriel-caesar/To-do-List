@@ -110,6 +110,11 @@ li {
   list-style: none;
 }
 
+#edit-btn {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
 @keyframes shake {
   0% {
     margin-left: 0rem;
@@ -308,6 +313,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 #list-desc {
@@ -366,6 +372,12 @@ li {
 
 .width {
   width: 100px;
+}
+
+.wrap1,
+.wrap2 {
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 1280px) {

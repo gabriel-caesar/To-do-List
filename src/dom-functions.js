@@ -42,6 +42,19 @@ const closeTaskTab = () => {
   dueDate.innerHTML = "";
 };
 
+// function that capitalize the first letter of an text input
+const descReformater = desc => {
+  const value = desc.value
+  if (value !== "" && value[0].toLowerCase()) {
+    let array = value.split("");
+    // updating just the first letter
+    array[0] = array[0].toUpperCase();
+    return array.join("");
+  } else {
+    return value;
+  }
+};
+
 // handles the rendering of the right panel where
 // tasks are shown related to its parent's list
 const renderRightPanel = name => {
@@ -76,12 +89,67 @@ const renderRightPanel = name => {
   deleteListBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
   textBtnWrap.appendChild(deleteListBtn);
 
+  // wraps "wrap1" and "wrap2"
   const textareaWrapper = document.createElement("div");
   textareaWrapper.className = "textarea-wrapper";
-  textareaWrapper.innerHTML = `
+  // holds the <p> with textarea.value
+  const wrap2 = document.createElement("div");
+  wrap2.className = "wrap2"
+  // holds the textarea
+  const wrap1 = document.createElement("div");
+  wrap1.className = "wrap1"
+  wrap1.innerHTML = `
   <textarea class="inputs" name="list-desc" id="list-desc" placeholder="Add your list a description..."></textarea>
   `
   headerWrapper.appendChild(textareaWrapper);
+  textareaWrapper.appendChild(wrap1);
+  textareaWrapper.appendChild(wrap2);
+
+  // making the list description useful
+  // it works using "Enter" and reformats the
+  // string with the first letter being capitalized
+  const listDesc = document.getElementById("list-desc");
+  listDesc.addEventListener('keydown', e => {
+    if (e.key === "Enter") {
+
+      // regex for the desc input, checks if there is
+      // one or more than one space in the user entry
+      const regex = /^\s*/gm;
+
+      if (listDesc.value !== "") {
+        
+        // makes sure it gets rid of the shaking and
+        // background color effect for invalid input
+        listDesc.classList.remove("invalid");
+
+        // hides the textarea
+        listDesc.style.display = "none";
+
+        wrap2.innerHTML = `
+          <p class="description">${descReformater(listDesc)}</p>
+          <div class="edit-btn-wrap">
+            <button class="buttons" id="edit-btn">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </div>
+        `;
+
+        // unhides the wrap2 which was hidden by the edit button before
+        wrap2.style.display = "flex";
+
+        // generated edit button
+        const editBtn = document.getElementById("edit-btn");
+        editBtn.addEventListener('click', () => {
+          // unhides the textarea
+          listDesc.style.display = "flex";
+          // hides the <p>
+          wrap2.style.display = "none";
+        });
+      } else {
+        listDesc.classList.toggle("invalid");
+      }
+    }
+  });
 
   console.log(logic.selectList(name), listsArray);
 };
