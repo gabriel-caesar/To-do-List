@@ -252,7 +252,7 @@ const renderList = () => {
         <h4>${listName}</h4>
       </div>
       <div class="arrow">
-        <i class="fa-solid fa-caret-up"></i>
+        <i class="fa-solid fa-caret-up" id="arrow"></i>
       </div>
     `;
 
@@ -274,4 +274,5 @@ export {
   renderListTab,
   closeTaskTab,
   renderTaskTab,
+  renderRightPanel
  };

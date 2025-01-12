@@ -163,6 +163,10 @@ li {
   background-color: #cdcccc;
 }
 
+.list:focus-within {
+  opacity: 0.7;
+}
+
 .buttons:active {
   opacity: 0.7;
   transition: none;
@@ -239,9 +243,6 @@ li {
   transition: background-color 0.15s ease;
 }
 
-#list-btn:focus-within {
-  background-color: #cdcccc;
-}
 
 .jc {
   justify-content: start;

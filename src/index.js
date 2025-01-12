@@ -6,6 +6,7 @@ import {
   renderListTab,
   closeTaskTab,
   renderTaskTab,
+  renderRightPanel
  } from "./dom-functions.js";
 
 console.log(new Date());
@@ -46,6 +47,7 @@ listName.addEventListener('keydown', e => {
 taskName.addEventListener('keydown', e => {
   if (e.key === "Enter") {
     e.preventDefault();
+    renderRightPanel(listPointer.value);
     createTask();
   }
 });
@@ -55,6 +57,7 @@ taskName.addEventListener('keydown', e => {
 dueDate.addEventListener('keydown', e => {
   if (e.key === "Enter") {
     e.preventDefault();
+    renderRightPanel(listPointer.value);
     createTask();
   }
 });
