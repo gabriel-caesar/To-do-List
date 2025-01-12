@@ -1,5 +1,5 @@
 import "./styles.css";
-import { createList, createTask } from "./logic.js";
+import { createList, createTask, taskError } from "./logic.js";
 import { 
   renderList, 
   closeListTab, 
@@ -8,8 +8,6 @@ import {
   renderTaskTab,
   renderRightPanel
  } from "./dom-functions.js";
-
-console.log(new Date());
 
 // calling the DOM for the creation of lists
 const newListContainer = document.querySelector(".new-list-container");
@@ -47,8 +45,17 @@ listName.addEventListener('keydown', e => {
 taskName.addEventListener('keydown', e => {
   if (e.key === "Enter") {
     e.preventDefault();
-    renderRightPanel(listPointer.value);
-    createTask();
+    
+    // listPointer is the third text input in the tasks
+    // creation tab and serves the purpose to identify
+    // what list is being selected for the task created
+    if (listPointer.value !== "") {
+      console.log(listPointer.value);
+      createTask();
+      renderRightPanel(listPointer.value);
+    } else {
+      taskError();
+    }
   }
 });
 
@@ -57,8 +64,17 @@ taskName.addEventListener('keydown', e => {
 dueDate.addEventListener('keydown', e => {
   if (e.key === "Enter") {
     e.preventDefault();
-    renderRightPanel(listPointer.value);
-    createTask();
+
+    // listPointer is the third text input in the tasks
+    // creation tab and serves the purpose to identify
+    // what list is being selected for the task created
+    if (listPointer.value !== "") {
+      console.log(listPointer.value);
+      createTask();
+      renderRightPanel(listPointer.value);
+    } else {
+      taskError();
+    }
   }
 });
 

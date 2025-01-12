@@ -9,7 +9,7 @@ import {
  } from "./index.js";
 
 function mainLogic () {
-  let lists = [];
+  let lists = JSON.parse(localStorage.getItem("DoingTime")) || [];
 
   // store the lists created by the user
   function addNewList (listName) {
@@ -17,22 +17,46 @@ function mainLogic () {
       listName: `${listName}`,
       tasks: [],
     });
+    localStorage.setItem("DoingTime", JSON.stringify(lists));
+  };
+
+  // deletes the desired lists filtering the lists array
+  function deleteList (listName) {
+    lists = lists.filter(obj => obj.listName !== listName);
+  }
+
+  function deleteTask (objName, taskName) {
+    let object = selectList(objName, lists);
+    object = object.tasks.filter(x => x.taskName !== taskName);
+  }
+
+  // adds a new description by creating a new pair
+  // of key-value inside the selected object
+  function addNewDesc (array, name, desc) {
+    const object = selectList(name, array);
+    // adding a new key as "description" and the
+    // "desc" as its value
+    object.description = desc;
+    localStorage.setItem("DoingTime", JSON.stringify(lists));
+    console.log(object);
   };
 
   function addNewTask (task, date) {
     const object = selectList(listPointer.value, lists);
     const index = lists.indexOf(object);
     lists[index].tasks.push({taskName: task, dueDate: date});
+    localStorage.setItem("DoingTime", JSON.stringify(lists));
     console.log(lists);
   };
   
   // this function returns clicked list
+  // or helps you find a object inside lists array
   function selectList (name, array) {
     const targetObj = array.find(obj => obj.listName === name);
     return targetObj;
   };
 
-  return { addNewList, lists, selectList, addNewTask };
+  return { addNewList, lists, selectList, addNewTask, addNewDesc, deleteList, deleteTask };
 };
 
 // regex for user entry
@@ -81,22 +105,30 @@ const createTask = () => {
     closeTaskTab();
     
   } else {
-
-    taskName.classList.toggle("invalid");
-    dueDate.classList.toggle("invalid-date");
-    taskRequirements.style.display = "block";
-    taskRequirements.innerHTML = `
-      <h3>Please, follow the requirements: </h3>
-      <li>&#8226; No duplicate names,</li>
-      <li>&#8226; At least two letters,</li>
-      <li>&#8226; First letter capitalized,</li>
-      <li>&#8226; Follow the date pattern <span class="date-pattern">mm/dd/yyyy</span>,</li>
-      <li>&#8226; Make sure to select one list.</li>
-    `;
-
+    taskError();
   }
 
 };
 
+const taskError = () => {
+  taskName.classList.toggle("invalid");
+  dueDate.classList.toggle("invalid-date");
+  taskRequirements.style.display = "block";
+  taskRequirements.innerHTML = `
+    <h3>Please, follow the requirements: </h3>
+    <li>&#8226; No duplicate names,</li>
+    <li>&#8226; At least two letters,</li>
+    <li>&#8226; First letter capitalized,</li>
+    <li>&#8226; Follow the date pattern <span class="date-pattern">mm/dd/yyyy</span>,</li>
+    <li>&#8226; Make sure to select one list.</li>
+  `;
+}
+
 // exporting functions and variables for other dependent files
-export { createList, listsArray, logic, createTask};
+export { 
+  createList,
+  listsArray,
+  logic,
+  createTask, 
+  taskError, 
+};

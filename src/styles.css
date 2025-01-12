@@ -79,7 +79,7 @@
 }
 
 h3 {
-  font-weight: 500
+  font-weight: 500;
 }
 
 .wrapper {
@@ -164,7 +164,7 @@ li {
 }
 
 .list:focus-within {
-  opacity: 0.7;
+  background-color: #cdcccc;
 }
 
 .buttons:active {
