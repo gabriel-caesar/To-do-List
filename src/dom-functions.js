@@ -6,7 +6,7 @@ import { newListContainer,
   taskName,
   dueDate,
   listPointer,
-  taskRequirements
+  taskRequirements,
 } from "./index.js";
 import { listsArray, logic } from "./logic.js";
 
@@ -163,6 +163,66 @@ const renderRightPanel = name => {
       }
     }
   });
+
+  renderTask(name);
+};
+
+// renders the tasks
+const renderTask = name => {
+  // found the object with this logic function
+  const object = logic.selectList(name, listsArray);
+  // accessed its tasks array for further rendering
+  const tasks = object.tasks;
+  // if there is no task in the selected list
+  if (tasks.length !== 0) {
+
+    const taskContainer = document.createElement("div");
+    taskContainer.className = "task-container";
+    // I repeated it and I don't care
+    const rightPanel = document.querySelector(".nav-panel");
+    
+    tasks.forEach(task => {
+
+    const taskWrapper = document.createElement("div");
+    taskWrapper.className = "task-wrapper";
+    taskContainer.appendChild(taskWrapper);
+
+    const checkboxTextWrapper = document.createElement("div");
+    checkboxTextWrapper.className = "checkbox-task-wrapper";
+    taskWrapper.appendChild(checkboxTextWrapper);
+
+    const wrapperOne = document.createElement("div");
+    wrapperOne.id = "wrap-one";
+    wrapperOne.className = "wrapping flex width";
+    wrapperOne.innerHTML = `
+      <input type="checkbox">
+      <span id="date-due" class="date-marks">${task.dueDate}</span>  
+    `;
+    checkboxTextWrapper.appendChild(wrapperOne);
+
+    const wrapperTwo = document.createElement("div");
+    wrapperTwo.id = "wrapper-two";
+    wrapperTwo.className = "wrapping flex";
+    wrapperTwo.innerHTML = `
+      <h3 class="semi-bold" style="margin-top: 3px">
+        ${task.taskName}
+      </h3>
+    `;
+    taskWrapper.appendChild(wrapperTwo);
+
+    const deleteTaskBtn = document.createElement("button");
+    deleteTaskBtn.className = "buttons";
+    deleteTaskBtn.id = "delete-task-icon";
+    deleteTaskBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+    wrapperTwo.appendChild(deleteTaskBtn);
+
+    //finally appending the parent container to .nav-panel (right panel)
+    rightPanel.appendChild(taskContainer);
+
+    });
+  } else {
+    console.log("No tasks.");
+  }
 };
 
 // handles the rendering of a new list

@@ -39,7 +39,7 @@
 .header-wrapper {
   margin-bottom: 3rem;
   border-bottom: 1px solid #cdcccc;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .new-task-container {
@@ -265,6 +265,7 @@ li {
 
 .semi-bold {
   font-weight: 500;
+  margin-left: 20px;
 }
 
 .margin-inline {
@@ -349,7 +350,7 @@ li {
 }
 
 .date-marks {
-  margin-right: 10px;
+  margin-right: 0px;
   border-radius: 6px;
   text-align: center;
   border: none;

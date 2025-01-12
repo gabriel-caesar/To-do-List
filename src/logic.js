@@ -20,15 +20,15 @@ function mainLogic () {
   };
 
   function addNewTask (task, date) {
-    const object = selectList(listPointer.value);
+    const object = selectList(listPointer.value, lists);
     const index = lists.indexOf(object);
     lists[index].tasks.push({taskName: task, dueDate: date});
     console.log(lists);
   };
   
   // this function returns clicked list
-  function selectList (name) {
-    const targetObj = lists.find(obj => obj.listName === name);
+  function selectList (name, array) {
+    const targetObj = array.find(obj => obj.listName === name);
     return targetObj;
   };
 
